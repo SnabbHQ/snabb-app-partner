@@ -1,5 +1,5 @@
 'use strict'
 
-import snowflake from './src/snowflake'
+import snabbPartner from './src/snabbPartner'
 
-snowflake('ios')
+snabbPartner('ios')

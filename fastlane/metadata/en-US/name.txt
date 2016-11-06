@@ -1,1 +1,1 @@
-Snowflake Demo
+snabbPartner Demo

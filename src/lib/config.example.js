@@ -11,17 +11,17 @@ module.exports = {
       url: 'http://localhost:5000'
     },
     remote: {
-      url: 'https://snowflakeserver-bartonhammond.rhcloud.com/'
+      url: 'https://snabbPartnerserver-bartonhammond.rhcloud.com/'
     }
   },
   PARSE: {
-    appId: 'snowflake',                              // match APP_ID in parse-server's index.js
+    appId: 'snabbPartner',                              // match APP_ID in parse-server's index.js
     masterKey: 'myMasterKey',                        // match MASTER_KEY in parse-server's index.js
     local: {
       url: 'http://localhost:1337/parse'             // match SERVER_URL in parse-server's index.js
     },
     remote: {
-      url: 'http://snowflake-parse.herokuapp.com/parse'   // match SERVER_URL in parse-server's index.js
+      url: 'http://snabbPartner-parse.herokuapp.com/parse'   // match SERVER_URL in parse-server's index.js
     }
   }
 }

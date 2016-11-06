@@ -1,5 +1,5 @@
 {
-  "name": "snowflake",
+  "name": "snabbPartner",
   "version": "0.2.0",
   "private": true,
   "jest": {
@@ -15,19 +15,19 @@
     "verbose": true
   },
   "scripts": {
-    "lint": "eslint . --fix --ignore-path .gitignore --format=node_modules/eslint-formatter-pretty",    
+    "lint": "eslint . --fix --ignore-path .gitignore --format=node_modules/eslint-formatter-pretty",
     "lint-validate": "eslint .  --ignore-path .gitignore  --quiet",
     "test": "npm run lint-validate && jest -u",
     "start": "react-native start",
     "test:watch": "npm run test -- --watch",
     "test-chrome": "node-debug --preload false --nodejs --harmony jest --runInBand",
-    "docs": "./node_modules/docker/docker -w -i src/ -o ../snowflake-pages "
+    "docs": "./node_modules/docker/docker -w -i src/ -o ../snabbPartner-pages "
   },
   "dependencies": {
     "apsl-react-native-button": "3.0.1",
     "immutable": "3.8.1",
     "key-mirror": "1.0.1",
-    "parse": "1.8.5",        
+    "parse": "1.8.5",
     "react": "15.3.2",
     "react-mixin": "3.0.5",
     "react-native": "0.35.0",

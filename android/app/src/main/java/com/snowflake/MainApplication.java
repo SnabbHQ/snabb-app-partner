@@ -1,4 +1,4 @@
-package com.snowflake;
+package com.snabbPartner;
 
 import android.app.Application;
 import android.util.Log;

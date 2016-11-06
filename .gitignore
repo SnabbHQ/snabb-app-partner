@@ -2,7 +2,7 @@
 #
 .DS_Store
 .tern-port
-        
+
 # Xcode
 #
 build/
@@ -24,7 +24,7 @@ DerivedData
 project.xcworkspace
 
 #Fastlane output of gym
-snowflake.app.dSYM.zip
+snabbPartner.app.dSYM.zip
 
 # Android/IJ
 #

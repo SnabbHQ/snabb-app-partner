@@ -116,7 +116,7 @@ let App = React.createClass({
           onGetState={this.props.actions.getState}
           onSetState={this.props.actions.setState} />
 
-        <Text style={styles.summary}>Snowflake {I18n.t('App.version')}:{this.props.deviceVersion}</Text>
+        <Text style={styles.summary}>snabbPartner {I18n.t('App.version')}:{this.props.deviceVersion}</Text>
 
       </View>
     )
