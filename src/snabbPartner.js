@@ -159,12 +159,12 @@ export default function native(platform) {
                        component={HomeScreen}
                        initial/>
 
-                {/*<Scene key='Earnings'*/}
-                       {/*title={I18n.t('Navigation.earnings')}*/}
-                       {/*icon={TabIcon}*/}
-                       {/*iconName={'ios-stats'}*/}
-                       {/*hideNavBar*/}
-                       {/*component={EarningsScreen}/>*/}
+                <Scene key='Earnings'
+                       title={I18n.t('Navigation.earnings')}
+                       icon={TabIcon}
+                       iconName={'ios-stats'}
+                       hideNavBar
+                       component={EarningsScreen}/>
 
                 {/*<Scene key='Ratings'*/}
                        {/*title={I18n.t('Navigation.ratings')}*/}

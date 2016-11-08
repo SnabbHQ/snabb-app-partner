@@ -19,14 +19,15 @@ import * as profileActions from "../../reducers/profile/profileActions"
 import * as globalActions from "../../reducers/global/globalActions"
 import ErrorAlert from "../../components/ErrorAlert"
 import React, {Component} from "react"
-import {StyleSheet, ScrollView} from "react-native"
+import {StyleSheet, ScrollView, Dimensions} from "react-native"
 import t from "tcomb-form-native"
 import I18n from '../../lib/I18n'
 import {View, Icon, Badge, List, Text, ListItem, Content} from "native-base"
 import GoOnlineNavBar from "../../components/GoOnlineNavBar"
+import UserProfileImage from "../user/components/UserProfileImage";
 
+const {width, height} = Dimensions.get('window');
 
-let Form = t.form.Form
 
 /**
  * ## Redux boilerplate
@@ -34,7 +35,6 @@ let Form = t.form.Form
 
 function mapStateToProps(state) {
   return {
-    profile: state.profile,
     global: {
       currentUser: state.global.currentUser,
       currentState: state.global.currentState,
@@ -58,28 +58,11 @@ class AccountScreen extends Component {
     super(props)
     this.errorAlert = new ErrorAlert()
     this.state = {
-      formValues: {
+      accountValues: {
         username: '',
         email: ''
       }
     }
-  }
-
-  /**
-   * ### onChange
-   *
-   * When any fields change in the form, fire this action so they can
-   * be validated.
-   *
-   */
-  onChange(value) {
-    if (value.username !== '') {
-      this.props.actions.onProfileFormFieldChange('username', value.username)
-    }
-    if (value.email !== '') {
-      this.props.actions.onProfileFormFieldChange('email', value.email)
-    }
-    this.setState({value})
   }
 
   /**
@@ -90,32 +73,18 @@ class AccountScreen extends Component {
    */
   componentWillReceiveProps(props) {
     this.setState({
-      formValues: {
-        username: props.profile.form.fields.username,
-        email: props.profile.form.fields.email
+      accountValues: {
+        username: props.global.currentUser.username,
+        email: props.global.currentUser.email
       }
     })
   }
 
   /**
    * ### componentDidMount
-   *
-   * During Hot Loading, when the component mounts due the state
-   * immediately being in a "logged in" state, we need to just set the
-   * form fields.  Otherwise, we need to go fetch the fields
-   */
+   **/
   componentDidMount() {
-    // TODO - Don't check this for now
-    // if (this.props.profile.form.fields.username === '' && this.props.profile.form.fields.email === '') {
-    //   this.props.actions.getProfile(this.props.global.currentUser)
-    // } else {
-    //   this.setState({
-    //     formValues: {
-    //       username: this.props.profile.form.fields.username,
-    //       email: this.props.profile.form.fields.email
-    //     }
-    //   })
-    // }
+    this.props.actions.getProfile(this.props.global.currentUser)
   }
 
   handleHelpPress() {
@@ -126,7 +95,7 @@ class AccountScreen extends Component {
     Actions.SettingsScreen()
   }
 
-  handleAboutPress () {
+  handleAboutPress() {
     Actions.AboutScreen()
   }
 
@@ -135,86 +104,48 @@ class AccountScreen extends Component {
    * display the form wrapped with the header and button
    */
   render() {
-    this.errorAlert.checkError(this.props.profile.form.error)
-
-    let self = this
-
-    let ProfileForm = t.struct({
-      username: t.String,
-      email: t.String
-    })
-    /**
-     * Set up the field definitions.  If we're fetching, the fields
-     * are disabled.
-     */
-    let options = {
-      auto: 'placeholders',
-      fields: {
-        username: {
-          label: I18n.t('Profile.username'),
-          maxLength: 12,
-          editable: !this.props.profile.form.isFetching,
-          hasError: this.props.profile.form.fields.usernameHasError,
-          error: this.props.profile.form.fields.usernameErrorMsg
-        },
-        email: {
-          label: I18n.t('Profile.email'),
-          keyboardType: 'email-address',
-          editable: !this.props.profile.form.isFetching,
-          hasError: this.props.profile.form.fields.emailHasError,
-          error: this.props.profile.form.fields.emailErrorMsg
-        }
-      }
-    }
-
-    /**
-     * When the button is pressed, send the users info including the
-     * ```currrentUser``` object as it contains the sessionToken and
-     * user objectId
-     */
-    let profileButtonText = I18n.t('Profile.update')
-    let onButtonPress = () => {
-      this.props.actions.updateProfile(
-        this.props.profile.form.originalProfile.objectId,
-        this.props.profile.form.fields.username,
-        this.props.profile.form.fields.email,
-        this.props.global.currentUser)
-    }
-    /**
-     * Wrap the form with the header and button.  The header props are
-     * mostly for support of Hot reloading. See the docs for Header
-     * for more info.
-     */
-    let verfiedText = I18n.t('Profile.verified') +
-      ' (' +
-      I18n.t('Profile.display') +
-      ')'
-
     return (
       <View>
         <GoOnlineNavBar/>
-        <View>
-          <View style={{height: 230, backgroundColor: '#000000'}}/>
-          <ScrollView>
-            <List>
-              <ListItem button iconLeft iconRight onPress={this.handleHelpPress.bind(this)}>
-                <Icon name='ios-help-circle-outline'/>
-                <Text>Help</Text>
-                <Icon name='ios-arrow-forward'/>
-              </ListItem>
-              <ListItem button iconLeft iconRight onPress={this.handleSettingsPress.bind(this)}>
-                <Icon name='ios-settings-outline'/>
-                <Text>Settings</Text>
-                <Icon name='ios-arrow-forward'/>
-              </ListItem>
-              <ListItem button iconLeft iconRight onPress={this.handleAboutPress.bind(this)}>
-                <Icon name='ios-information-circle-outline'/>
-                <Text>About</Text>
-                <Icon name='ios-arrow-forward'/>
-              </ListItem>
-            </List>
-          </ScrollView>
-        </View>
+        <Content>
+          <View style={{height: 230}}>
+            <View style={{marginTop: 20, alignItems: 'center'}}>
+              <UserProfileImage style={styles.userProfile} onPress={() => this.openControlPanel()}/>
+              <Text style={styles.userName}>{this.props.global.currentUser.username}</Text>
+            </View>
+
+            <View style={{flexDirection: 'row', marginTop: 10, paddingRight: 30, paddingLeft: 30}}>
+              <View style={{padding: 10, marginRight: 1, flex: 1, backgroundColor: '#FF0505', alignItems: 'center'}}>
+                <Icon name='ios-star'/>
+                <Text>4.9</Text>
+                <Text>Rating</Text>
+              </View>
+              <View style={{padding: 10, marginLeft: 2, flex: 1, backgroundColor: '#FF0505', alignItems: 'center'}}>
+                <Icon name='ios-car'/>
+                <Text>129</Text>
+                <Text>Rides</Text>
+              </View>
+            </View>
+          </View>
+          <View style={{marginTop: 50, marginRight: 30, marginLeft: 30, height: 1, backgroundColor: '#C2C2C2'}}/>
+          <List>
+            <ListItem button iconLeft iconRight onPress={this.handleHelpPress.bind(this)}>
+              <Icon name='ios-help-circle-outline'/>
+              <Text>Help</Text>
+              <Icon name='ios-arrow-forward'/>
+            </ListItem>
+            <ListItem button iconLeft iconRight onPress={this.handleSettingsPress.bind(this)}>
+              <Icon name='ios-settings-outline'/>
+              <Text>Settings</Text>
+              <Icon name='ios-arrow-forward'/>
+            </ListItem>
+            <ListItem button iconLeft iconRight onPress={this.handleAboutPress.bind(this)}>
+              <Icon name='ios-information-circle-outline'/>
+              <Text>About</Text>
+              <Icon name='ios-arrow-forward'/>
+            </ListItem>
+          </List>
+        </Content>
       </View>
     )
   }
@@ -224,13 +155,15 @@ class AccountScreen extends Component {
  * ## Styles
  */
 const styles = StyleSheet.create({
-  inputs: {
+  userProfile: {},
+  userName: {
     marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 10,
-    marginRight: 10
+    padding: 10,
+    fontSize: 30,
+    color: '#000000'
   }
 })
+
 
 {/*<Header isFetching={this.props.profile.form.isFetching}*/
 }

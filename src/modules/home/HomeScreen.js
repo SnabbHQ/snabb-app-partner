@@ -91,20 +91,15 @@ class HomeScreen extends Component {
           style={styles.map}
           showsUserLocation={true}
           initialRegion={this.state.region}
-          onRegionChange={region => this.onRegionChange(region)}/>
+          onRegionChange={region => this.onRegionChange(region)}>
 
-
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            onPress={() => this.onGoOnlinePress()}
-            style={[styles.bubble, styles.button]}>
-            <Text>Go Online</Text>
-          </TouchableOpacity>
-        </View>
+          <GoOnlineNavBar/>
+        </MapView>
       </View>
     )
   }
 }
+
 
 
 // <View>
@@ -126,27 +121,8 @@ var styles = StyleSheet.create({
     alignItems: 'center',
   },
   map: {
-    ...StyleSheet.absoluteFillObject
+    ...StyleSheet.absoluteFillObject,
   },
-  buttonContainer: {
-    flexDirection: 'row',
-    marginVertical: 20,
-    backgroundColor: 'transparent',
-  },
-  bubble: {
-    flex: 1,
-    backgroundColor: 'rgba(255,255,255,1)',
-    paddingHorizontal: 18,
-    paddingVertical: 12,
-    borderRadius: 10,
-    marginBottom: 70
-  },
-  button: {
-    width: 80,
-    paddingHorizontal: 12,
-    alignItems: 'center',
-    marginHorizontal: 10,
-  }
 })
 
 /**

@@ -77,6 +77,7 @@ export default function profileReducer (state = initialState, action) {
      */
     case GET_PROFILE_SUCCESS:
       nextProfileState = state.setIn(['form', 'isFetching'], false)
+      .setIn(['profile', 'username'], action.payload.username)
       .setIn(['form', 'fields', 'username'], action.payload.username)
       .setIn(['form', 'fields', 'email'], action.payload.email)
       .setIn(['form', 'fields', 'emailVerified'],

@@ -51,17 +51,19 @@ class EarningsViews extends Component {
    */
   render() {
     return (
-      <Content>
+      <View>
         <GoOnlineNavBar/>
-        <View>
-          <Header isFetching={this.props.auth.form.isFetching}
-                  showState={this.props.global.showState}
-                  currentState={this.props.global.currentState}
-                  onGetState={this.props.actions.getState}
-                  onSetState={this.props.actions.setState}/>
+        <Content>
+          <View>
+            <Header isFetching={this.props.auth.form.isFetching}
+                    showState={this.props.global.showState}
+                    currentState={this.props.global.currentState}
+                    onGetState={this.props.actions.getState}
+                    onSetState={this.props.actions.setState}/>
 
-        </View>
-      </Content>
+          </View>
+        </Content>
+      </View>
     )
   }
 }
