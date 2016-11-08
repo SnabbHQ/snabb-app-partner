@@ -12,9 +12,12 @@ import * as globalActions from "../../reducers/global/globalActions"
 import {Actions} from "react-native-router-flux"
 import Header from "../../components/Header"
 import React, {Component} from "react"
-import {StyleSheet, View} from "react-native"
-import I18n from "../../lib/I18n";
-import {Button} from 'native-base';
+import {StyleSheet} from "react-native"
+import I18n from "../../lib/I18n"
+import {Button} from "native-base"
+import {View, Content} from "native-base"
+import GoOnlineNavBar from "../../components/GoOnlineNavBar"
+
 
 /**
  *  Instead of including all app states via ...state
@@ -57,7 +60,8 @@ class HomeView extends Component {
 
   render () {
     return (
-      <View style={styles.container}>
+      <Content>
+        <GoOnlineNavBar title={"Hola"}/>
         <View>
           <Header isFetching={this.props.auth.form.isFetching}
             showState={this.props.global.showState}
@@ -69,16 +73,12 @@ class HomeView extends Component {
             {I18n.t('Navigation.home')}
           </Button>
         </View>
-      </View>
+      </Content>
     )
   }
 }
 
 var styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    flex: 1
-  },
   summary: {
     fontFamily: 'BodoniSvtyTwoITCTT-Book',
     fontSize: 18,
