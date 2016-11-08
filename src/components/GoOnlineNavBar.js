@@ -23,7 +23,7 @@ export default class GoOnlineNavBar extends Component {
             paddingRight: 15,
             paddingLeft: 15
           }}>
-            <NavButtonText style={{color: "#FFFFFF"}}>
+            <NavButtonText style={{}}>
               {"GO ONLINE"}
             </NavButtonText>
           </NavButton>
