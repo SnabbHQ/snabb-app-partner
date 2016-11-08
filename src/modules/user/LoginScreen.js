@@ -45,7 +45,7 @@ function buttonPressHandler (login, username, password) {
 var I18n = require('react-native-i18n')
 I18n.translations = Translations
 
-let Login = React.createClass({
+let LoginScreen = React.createClass({
 
   render () {
     let loginButtonText = I18n.t('Login.login')
@@ -70,4 +70,4 @@ let Login = React.createClass({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen)

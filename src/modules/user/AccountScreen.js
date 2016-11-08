@@ -49,7 +49,7 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-class AccountView extends Component {
+class AccountScreen extends Component {
   /**
    * ## Profile class
    * Set the initial state and prepare the errorAlert
@@ -221,4 +221,4 @@ var styles = StyleSheet.create({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(AccountView)
+export default connect(mapStateToProps, mapDispatchToProps)(AccountScreen)

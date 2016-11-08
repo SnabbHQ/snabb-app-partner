@@ -37,7 +37,7 @@ function buttonPressHandler(resetPassword, email) {
   resetPassword(email)
 }
 
-let ForgotPasswordView = React.createClass({
+let ForgotPasswordScreen = React.createClass({
 
   render () {
     let loginButtonText = I18n.t('ForgotPassword.reset_password')
@@ -60,4 +60,4 @@ let ForgotPasswordView = React.createClass({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ForgotPasswordView)
+export default connect(mapStateToProps, mapDispatchToProps)(ForgotPasswordScreen)

@@ -37,7 +37,7 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-class LogoutView extends Component {
+class LogoutScreen extends Component {
 
   /**
    * ### render
@@ -80,4 +80,4 @@ var styles = StyleSheet.create({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogoutView)
+export default connect(mapStateToProps, mapDispatchToProps)(LogoutScreen)

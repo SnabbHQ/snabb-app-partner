@@ -37,7 +37,7 @@ function buttonPressHandler(signup, username, email, password) {
   signup(username, email, password)
 }
 
-class RegisterView extends Component {
+class RegisterScreen extends Component {
   render() {
     let loginButtonText = I18n.t('Register.register')
     let onButtonPress = buttonPressHandler.bind(null,
@@ -66,4 +66,4 @@ class RegisterView extends Component {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(RegisterView)
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterScreen)

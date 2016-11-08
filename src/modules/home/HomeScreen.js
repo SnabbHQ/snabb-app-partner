@@ -49,7 +49,7 @@ function mapDispatchToProps (dispatch) {
 /**
  * ## App class
  */
-class HomeView extends Component {
+class HomeScreen extends Component {
 
   handlePress () {
     Actions.Subview({
@@ -95,4 +95,4 @@ var styles = StyleSheet.create({
 /**
  * Connect the properties
  */
-export default connect(mapStateToProps, mapDispatchToProps)(HomeView)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

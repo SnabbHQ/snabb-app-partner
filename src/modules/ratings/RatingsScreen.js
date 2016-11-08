@@ -5,27 +5,23 @@
  *
  */
 'use strict'
-/**
- * ## Imports
- *
- * Redux
- */
+
 import {bindActionCreators} from "redux"
 import {connect} from "react-redux"
 import * as authActions from "../../reducers/auth/authActions"
 import * as globalActions from "../../reducers/global/globalActions"
 import Header from "../../components/Header"
-import FormButton from "../../components/FormButton"
 import React, {Component} from "react"
-import {StyleSheet, View} from "react-native"
-import I18n from '../../lib/I18n'
-
+import {StyleSheet} from "react-native"
+import I18n from "../../lib/I18n"
+import {View, Content} from "native-base"
+import GoOnlineNavBar from "../../components/GoOnlineNavBar"
 
 /**
  * ## Redux boilerplate
  */
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     auth: {
       form: {
@@ -40,41 +36,32 @@ function mapStateToProps (state) {
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ ...authActions, ...globalActions }, dispatch)
+    actions: bindActionCreators({...authActions, ...globalActions}, dispatch)
   }
 }
 
-class RatingsView extends Component {
+class RatingsScreen extends Component {
 
   /**
    * ### render
    * Setup some default presentations and render
    */
-  render () {
-    let self = this
-
-    let onButtonPress = () => {
-      this.props.actions.logout()
-    }
-
+  render() {
     return (
-      <View style={styles.container}>
+      <Content>
+        <GoOnlineNavBar/>
         <View>
           <Header isFetching={this.props.auth.form.isFetching}
-            showState={this.props.global.showState}
-            currentState={this.props.global.currentState}
-            onGetState={this.props.actions.getState}
-            onSetState={this.props.actions.setState} />
+                  showState={this.props.global.showState}
+                  currentState={this.props.global.currentState}
+                  onGetState={this.props.actions.getState}
+                  onSetState={this.props.actions.setState}/>
 
-          <FormButton
-            isDisabled={!this.props.auth.form.isValid || this.props.auth.form.isFetching}
-            onPress={onButtonPress.bind(self)}
-            buttonText={I18n.t('snabbPartner.logout')} />
         </View>
-      </View>
-      )
+      </Content>
+    )
   }
 }
 
@@ -88,4 +75,4 @@ var styles = StyleSheet.create({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(RatingsView)
+export default connect(mapStateToProps, mapDispatchToProps)(RatingsScreen)
