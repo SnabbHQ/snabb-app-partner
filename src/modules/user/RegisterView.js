@@ -1,14 +1,14 @@
 
 'use strict'
 
-import {bindActionCreators} from "redux";
-import {connect} from "react-redux";
-import * as authActions from "../../reducers/auth/authActions";
-import LoginRender from "./components/LoginRender";
-import React, {Component} from "react";
-import {Actions} from "react-native-router-flux";
-import {View} from "react-native";
-import I18n from "../../lib/I18n";
+import {bindActionCreators} from "redux"
+import {connect} from "react-redux"
+import * as authActions from "../../reducers/auth/authActions"
+import LoginRender from "./components/LoginRender"
+import React, {Component} from "react"
+import {View} from "react-native"
+import DefaultNavBar from "../../components/DefaultNavBar"
+import I18n from "../../lib/I18n"
 
 const {
   LOGIN,

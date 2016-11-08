@@ -13,96 +13,35 @@
  *
  * Necessary components from ReactNative
  */
-import React from 'react'
-import {
-  AppRegistry,
-  StyleSheet,
-  View,
-  Text
-} from 'react-native'
+import React from "react"
+import {AppRegistry, StyleSheet, View, Text} from "react-native"
+import {Router, Scene} from "react-native-router-flux"
+import {Provider} from "react-redux"
+import configureStore from "./lib/configureStore"
+import App from "./modules/App"
+import Login from "./modules/user/LoginView"
+import Logout from "./modules/user/LogoutView"
+import Register from "./modules/user/RegisterView"
+import ForgotPassword from "./modules/user/ForgotPasswordView"
+import Profile from "./modules/user/AccountView"
+import Main from "./modules/home/HomeView"
+import Subview from "./modules/Subview"
+import {setPlatform, setVersion} from "./reducers/device/deviceActions"
+import {setStore} from "./reducers/global/globalActions"
+import AuthInitialState from "./reducers/auth/authInitialState"
+import DeviceInitialState from "./reducers/device/deviceInitialState"
+import GlobalInitialState from "./reducers/global/globalInitialState"
+import ProfileInitialState from "./reducers/profile/profileInitialState"
+//import TabIcon from "./modules/home/components/TabIcon"
+import pack from "../package"
+import I18n from './lib/I18n'
+import Icon from "react-native-vector-icons/Ionicons"
+import {Component} from "react"
 
-/**
- * ### Router-Flux
- *
- * Necessary components from Router-Flux
- */
-import {
-  Router,
-  Scene
-} from 'react-native-router-flux'
-
-/**
- * ### Redux
- *
- * ```Provider``` will tie the React-Native to the Redux store
- */
-import {
-  Provider
-} from 'react-redux'
-
-/**
- * ### configureStore
- *
- *  ```configureStore``` will connect the ```reducers```, the
- *
- */
-import configureStore from './lib/configureStore'
-
-/**
- * ### Translations
- */
-var I18n = require('react-native-i18n')
-
-// Support fallbacks so en-US & en-BR both use en
-I18n.fallbacks = true
-
-import Translations from './lib/Translations'
-I18n.translations = Translations
-
-/**
- * ### modules
- *
- * All the top level modules
- *
- */
-import App from './modules/App'
-import Login from './modules/user/LoginView'
-import Logout from './modules/user/LogoutView'
-import Register from './modules/user/RegisterView'
-import ForgotPassword from './modules/user/ForgotPasswordView'
-import Profile from './modules/user/AccountView'
-import Main from './modules/home/HomeView'
-import Subview from './modules/Subview'
-
-/**
- * ### icons
- *
- * Add icon support for use in Tabbar
- *
- */
-import Icon from 'react-native-vector-icons/FontAwesome'
-
-/**
- * ## Actions
- *  The necessary actions for dispatching our bootstrap values
- */
-import {setPlatform, setVersion} from './reducers/device/deviceActions'
-import {setStore} from './reducers/global/globalActions'
-
-/**
- * ## States
- * snabbPartner explicitly defines initial state
- *
- */
-import AuthInitialState from './reducers/auth/authInitialState'
-import DeviceInitialState from './reducers/device/deviceInitialState'
-import GlobalInitialState from './reducers/global/globalInitialState'
-import ProfileInitialState from './reducers/profile/profileInitialState'
 
 /**
  *  The version of the app but not  displayed yet
  */
-import pack from '../package'
 var VERSION = pack.version
 
 /**
@@ -123,16 +62,13 @@ function getInitialState() {
 
 const styles = StyleSheet.create({
   tabBar: {
+    backgroundColor: '#2D2D2D',
     height: 70
   }
 })
 
-/**
- * ## TabIcon
- *
- * Displays the icon for the tab w/ color dependent upon selection
- */
-class TabIcon extends React.Component {
+class TabIcon extends Component {
+
   render() {
     var color = this.props.selected ? '#FF3366' : '#FFB3B3'
     return (
@@ -143,6 +79,7 @@ class TabIcon extends React.Component {
     )
   }
 }
+
 
 /**
  * ## Native
@@ -199,11 +136,11 @@ export default function native(platform) {
                      tabs
                      hideNavBar
                      tabBarStyle={styles.tabBar}
-                     default='Main'>
+                     default='Home'>
 
                 <Scene key='Home'
                        title={I18n.t('Navigation.home')}
-                       iconName={'home'}
+                       iconName={'ios-home'}
                        icon={TabIcon}
                        hideNavBar
                        component={Main}
@@ -212,21 +149,21 @@ export default function native(platform) {
                 <Scene key='Earnings'
                        title={I18n.t('Navigation.earnings')}
                        icon={TabIcon}
-                       iconName={'sign-out'}
+                       iconName={'ios-stats'}
                        hideNavBar
                        component={Logout}/>
 
                 <Scene key='Ratings'
                        title={I18n.t('Navigation.ratings')}
                        icon={TabIcon}
-                       iconName={'star'}
+                       iconName={'ios-star'}
                        hideNavBar
                        component={Logout}/>
 
                 <Scene key='Account'
                        title={I18n.t('Navigation.account')}
                        icon={TabIcon}
-                       iconName={'star'}
+                       iconName={'ios-person'}
                        hideNavBar
                        component={Profile}/>
               </Scene>
