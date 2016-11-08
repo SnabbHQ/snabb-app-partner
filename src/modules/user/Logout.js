@@ -16,17 +16,17 @@ import { connect } from 'react-redux'
 /**
  * The actions we need
  */
-import * as authActions from '../reducers/auth/authActions'
-import * as globalActions from '../reducers/global/globalActions'
+import * as authActions from '../../reducers/auth/authActions'
+import * as globalActions from '../../reducers/global/globalActions'
 
 /**
  * The Header will display a Image and support Hot Loading
  */
-import Header from '../components/Header'
+import Header from '../../components/Header'
 /**
  * The FormButton will change it's text between the 4 states as necessary
  */
-import FormButton from '../components/FormButton'
+import FormButton from '../../components/FormButton'
 
 /**
  * The necessary React components
@@ -76,7 +76,7 @@ function mapDispatchToProps (dispatch) {
  * ### Translations
  */
 var I18n = require('react-native-i18n')
-import Translations from '../lib/Translations'
+import Translations from '../../lib/Translations'
 I18n.translations = Translations
 
 class Logout extends Component {

@@ -52,7 +52,7 @@ export class Hapi extends Backend {
   async signup (data) {
     return await this._fetch({
       method: 'POST',
-      url: '/account/register',
+      url: '/user/register',
       body: data
     })
       .then((res) => {
@@ -87,7 +87,7 @@ export class Hapi extends Backend {
   async login (data) {
     return await this._fetch({
       method: 'POST',
-      url: '/account/login',
+      url: '/user/login',
       body: data
     })
       .then((res) => {
@@ -108,7 +108,7 @@ export class Hapi extends Backend {
   async logout () {
     return await this._fetch({
       method: 'POST',
-      url: '/account/logout',
+      url: '/user/logout',
       body: {}
     })
       .then((res) => {
@@ -137,7 +137,7 @@ export class Hapi extends Backend {
   async resetPassword (data) {
     return await this._fetch({
       method: 'POST',
-      url: '/account/resetPasswordRequest',
+      url: '/user/resetPasswordRequest',
       body: data
     })
       .then((response) => {
@@ -172,7 +172,7 @@ export class Hapi extends Backend {
   async getProfile () {
     return await this._fetch({
       method: 'GET',
-      url: '/account/profile/me'
+      url: '/user/profile/me'
     })
       .then((res) => {
         if ((res.status === 200 || res.status === 201)) {
@@ -197,7 +197,7 @@ export class Hapi extends Backend {
   async updateProfile (userId, data) {
     return await this._fetch({
       method: 'POST',
-      url: '/account/profile/' + userId,
+      url: '/user/profile/' + userId,
       body: data
     })
       .then((res) => {

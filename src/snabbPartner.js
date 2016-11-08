@@ -66,11 +66,11 @@ I18n.translations = Translations
  *
  */
 import App from './modules/App'
-import Login from './modules/Login'
-import Logout from './modules/Logout'
-import Register from './modules/Register'
-import ForgotPassword from './modules/ForgotPassword'
-import Profile from './modules/account/AccountView'
+import Login from './modules/user/Login'
+import Logout from './modules/user/Logout'
+import Register from './modules/user/Register'
+import ForgotPassword from './modules/user/ForgotPassword'
+import Profile from './modules/user/AccountView'
 import Main from './modules/home/HomeView'
 import Subview from './modules/Subview'
 
@@ -201,7 +201,7 @@ export default function native(platform) {
                      tabBarStyle={styles.tabBar}
                      default='Main'>
 
-                <Scene key='Main'
+                <Scene key='Home'
                        title={I18n.t('Navigation.home')}
                        iconName={'home'}
                        icon={TabIcon}
@@ -223,7 +223,7 @@ export default function native(platform) {
                        hideNavBar
                        component={Logout}/>
 
-                <Scene key='Profile'
+                <Scene key='Account'
                        title={I18n.t('Navigation.account')}
                        icon={TabIcon}
                        iconName={'star'}

@@ -9,45 +9,21 @@
  *
  * Imports from redux
  */
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {bindActionCreators} from "redux"
+import {connect} from "react-redux"
+import * as authActions from "../../reducers/auth/authActions"
+import * as globalActions from "../../reducers/global/globalActions"
+import {Actions} from "react-native-router-flux"
+import Header from "../../components/Header"
+import React, {Component} from "react"
+import {StyleSheet, View} from "react-native"
+import I18n from "../../lib/I18n";
 
-/**
- * The actions we need
- */
-import * as authActions from '../../reducers/auth/authActions'
-import * as globalActions from '../../reducers/global/globalActions'
-
-/**
- * Router
- */
-import {Actions} from 'react-native-router-flux'
-
-/**
- * The Header will display a Image and support Hot Loading
- */
-import Header from '../../components/Header'
-
-/**
- * The components needed from React
- */
-import React, {Component} from 'react'
-import
-{
-  StyleSheet,
-  View
-}
-from 'react-native'
-
-/**
- * The platform neutral button
- */
 const Button = require('apsl-react-native-button')
 
 /**
  *  Instead of including all app states via ...state
  *  One could explicitly enumerate only those which HomeView.js will depend on.
- *
  */
 function mapStateToProps (state) {
   return {
@@ -72,34 +48,10 @@ function mapDispatchToProps (dispatch) {
   }
 }
 
-var styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    flex: 1
-  },
-  summary: {
-    fontFamily: 'BodoniSvtyTwoITCTT-Book',
-    fontSize: 18,
-    fontWeight: 'bold'
-  },
-  button: {
-    backgroundColor: '#FF3366',
-    borderColor: '#FF3366',
-    marginLeft: 10,
-    marginRight: 10
-  }
-})
-/**
- * ### Translations
- */
-var I18n = require('react-native-i18n')
-import Translations from '../../lib/Translations'
-I18n.translations = Translations
-
 /**
  * ## App class
  */
-class Main extends Component {
+class HomeView extends Component {
 
   handlePress () {
     Actions.Subview({
@@ -119,7 +71,7 @@ class Main extends Component {
             onSetState={this.props.actions.setState} />
 
           <Button style={styles.button} onPress={this.handlePress.bind(this)}>
-            {I18n.t('Main.navigate')}
+            {I18n.t('Navigation.home')}
           </Button>
         </View>
       </View>
@@ -127,7 +79,25 @@ class Main extends Component {
   }
 }
 
+var styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    flex: 1
+  },
+  summary: {
+    fontFamily: 'BodoniSvtyTwoITCTT-Book',
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
+  button: {
+    backgroundColor: '#FF3366',
+    borderColor: '#FF3366',
+    marginLeft: 10,
+    marginRight: 10
+  }
+})
+
 /**
  * Connect the properties
  */
-export default connect(mapStateToProps, mapDispatchToProps)(Main)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView)

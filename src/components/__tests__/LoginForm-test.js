@@ -25,7 +25,7 @@ jest.mock('tcomb-form-native', () => {
 import 'react-native'
 import React from 'react'
 
-import LoginForm from '../LoginForm'
+import LoginForm from '../../modules/user/components/LoginForm'
 
 import renderer from 'react/lib/ReactTestRenderer'
 

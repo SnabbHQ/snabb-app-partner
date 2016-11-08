@@ -14,12 +14,12 @@ import { connect } from 'react-redux'
 /**
  * The actions we need
  */
-import * as authActions from '../reducers/auth/authActions'
+import * as authActions from '../../reducers/auth/authActions'
 
 /**
  *   LoginRender
  */
-import LoginRender from '../components/LoginRender'
+import LoginRender from './components/LoginRender'
 
 /**
  * Need React
@@ -30,7 +30,7 @@ const {
   REGISTER,
   LOGIN,
   FORGOT_PASSWORD
-} = require('../lib/constants').default
+} = require('../../lib/constants').default
 
 /**
   * ## Redux boilerplate
@@ -56,7 +56,7 @@ function buttonPressHandler (resetPassword, email) {
  * ### Translations
  */
 var I18n = require('react-native-i18n')
-import Translations from '../lib/Translations'
+import Translations from '../../lib/Translations'
 I18n.translations = Translations
 
 let ForgotPassword = React.createClass({

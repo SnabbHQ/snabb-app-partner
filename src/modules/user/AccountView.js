@@ -12,66 +12,21 @@
 *
 * Redux
 */
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
+import {bindActionCreators} from "redux"
+import {connect} from "react-redux"
+import * as profileActions from "../../reducers/profile/profileActions"
+import * as globalActions from "../../reducers/global/globalActions"
+import ErrorAlert from "../../components/ErrorAlert"
+import FormButton from "../../components/FormButton"
+import Header from "../../components/Header"
+import ItemCheckbox from "../../components/ItemCheckbox"
+import React, {Component} from "react"
+import {StyleSheet, View} from "react-native"
+import t from "tcomb-form-native"
+import Translations from "../../lib/Translations"
 
-/**
- * The actions we need
- */
-import * as profileActions from '../../reducers/profile/profileActions'
-import * as globalActions from '../../reducers/global/globalActions'
-
-/**
- * The ErrorAlert will display any and all errors
- */
-import ErrorAlert from '../../components/ErrorAlert'
-/**
- * The FormButton will respond to the press
- */
-import FormButton from '../../components/FormButton'
-/**
- * The Header will display a Image and support Hot Loading
- */
-import Header from '../../components/Header'
-
-/**
- * The itemCheckbox will display the state of the email verified
- */
-import ItemCheckbox from '../../components/ItemCheckbox'
-/**
- * The necessary React components
- */
-import React, {Component} from 'react'
-import
-{
-  StyleSheet,
-  View
-}
-from 'react-native'
-
-/**
-* The form processing component
-*/
-import t from 'tcomb-form-native'
 
 let Form = t.form.Form
-
-/**
- * ## Styles
- */
-var styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    flex: 1,
-    backgroundColor: 'transparent'
-  },
-  inputs: {
-    marginTop: 10,
-    marginBottom: 10,
-    marginLeft: 10,
-    marginRight: 10
-  }
-})
 
 /**
 * ## Redux boilerplate
@@ -97,10 +52,9 @@ function mapDispatchToProps (dispatch) {
  * ### Translations
  */
 var I18n = require('react-native-i18n')
-import Translations from '../../lib/Translations'
 I18n.translations = Translations
 
-class Profile extends Component {
+class AccountView extends Component {
   /**
    * ## Profile class
    * Set the initial state and prepare the errorAlert
@@ -254,4 +208,22 @@ class Profile extends Component {
     )
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Profile)
+
+/**
+ * ## Styles
+ */
+var styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    flex: 1,
+    backgroundColor: 'transparent'
+  },
+  inputs: {
+    marginTop: 10,
+    marginBottom: 10,
+    marginLeft: 10,
+    marginRight: 10
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(AccountView)
