@@ -14,17 +14,15 @@
  */
 import {bindActionCreators} from "redux"
 import {connect} from "react-redux"
+import {Actions} from "react-native-router-flux"
 import * as profileActions from "../../reducers/profile/profileActions"
 import * as globalActions from "../../reducers/global/globalActions"
 import ErrorAlert from "../../components/ErrorAlert"
-import FormButton from "../../components/FormButton"
-import Header from "../../components/Header"
-import ItemCheckbox from "../../components/ItemCheckbox"
 import React, {Component} from "react"
 import {StyleSheet} from "react-native"
 import t from "tcomb-form-native"
 import I18n from '../../lib/I18n'
-import {View, Content} from "native-base"
+import {View, Icon, Badge, List, Text, ListItem, Content} from "native-base"
 import GoOnlineNavBar from "../../components/GoOnlineNavBar"
 
 
@@ -107,16 +105,25 @@ class AccountScreen extends Component {
    * form fields.  Otherwise, we need to go fetch the fields
    */
   componentDidMount() {
-    if (this.props.profile.form.fields.username === '' && this.props.profile.form.fields.email === '') {
-      this.props.actions.getProfile(this.props.global.currentUser)
-    } else {
-      this.setState({
-        formValues: {
-          username: this.props.profile.form.fields.username,
-          email: this.props.profile.form.fields.email
-        }
-      })
-    }
+    // TODO - Don't check this for now
+    // if (this.props.profile.form.fields.username === '' && this.props.profile.form.fields.email === '') {
+    //   this.props.actions.getProfile(this.props.global.currentUser)
+    // } else {
+    //   this.setState({
+    //     formValues: {
+    //       username: this.props.profile.form.fields.username,
+    //       email: this.props.profile.form.fields.email
+    //     }
+    //   })
+    // }
+  }
+
+  handleSettingsPress () {
+    Actions.Subview()
+  }
+
+  handleAboutPress () {
+    Actions.Subview()
   }
 
   /**
@@ -178,35 +185,26 @@ class AccountScreen extends Component {
       ' (' +
       I18n.t('Profile.display') +
       ')'
-    
+
     return (
-      <Content>
+      <View>
         <GoOnlineNavBar/>
-        <Header isFetching={this.props.profile.form.isFetching}
-                showState={this.props.global.showState}
-                currentState={this.props.global.currentState}
-                onGetState={this.props.actions.getState}
-                onSetState={this.props.actions.setState}
-        />
-        <View style={styles.inputs}>
-          <Form
-            ref='form'
-            type={ProfileForm}
-            options={options}
-            value={this.state.formValues}
-            onChange={this.onChange.bind(self)}
-          />
-          <ItemCheckbox text={verfiedText}
-                        disabled
-                        checked={this.props.profile.form.fields.emailVerified}/>
+        <View>
+          <View style={{height: 230, backgroundColor: '#000000'}}/>
+          <List>
+            <ListItem button iconLeft iconRight onPress={this.handleSettingsPress.bind(this)}>
+              <Icon name='ios-help-circle-outline'/>
+              <Text>Help</Text>
+              <Icon name='ios-arrow-forward'/>
+            </ListItem>
+            <ListItem button iconLeft iconRight onPress={this.handleAboutPress.bind(this)}>
+              <Icon name='ios-information-circle-outline'/>
+              <Text>Settings</Text>
+              <Icon name='ios-arrow-forward'/>
+            </ListItem>
+          </List>
         </View>
-
-        <FormButton
-          isDisabled={!this.props.profile.form.isValid || this.props.profile.form.isFetching}
-          onPress={onButtonPress.bind(self)}
-          buttonText={profileButtonText}/>
-
-      </Content>
+      </View>
     )
   }
 }
@@ -222,5 +220,35 @@ var styles = StyleSheet.create({
     marginRight: 10
   }
 })
+
+{/*<Header isFetching={this.props.profile.form.isFetching}*/
+}
+{/*showState={this.props.global.showState}*/
+}
+{/*currentState={this.props.global.currentState}*/
+}
+{/*onGetState={this.props.actions.getState}*/
+}
+{/*onSetState={this.props.actions.setState}*/
+}
+{/*/>*/
+}
+//<View style={styles.inputs}>
+// <Form
+// ref='form'
+// type={ProfileForm}
+// options={options}
+// value={this.state.formValues}
+// onChange={this.onChange.bind(self)}
+// />
+// <ItemCheckbox text={verfiedText}
+// disabled
+// checked={this.props.profile.form.fields.emailVerified}/>
+// </View>
+//
+// <FormButton
+// isDisabled={!this.props.profile.form.isValid || this.props.profile.form.isFetching}
+// onPress={onButtonPress.bind(self)}
+// buttonText={profileButtonText}/>
 
 export default connect(mapStateToProps, mapDispatchToProps)(AccountScreen)
