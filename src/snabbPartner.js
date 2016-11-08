@@ -60,19 +60,19 @@ import Translations from './lib/Translations'
 I18n.translations = Translations
 
 /**
- * ### containers
+ * ### modules
  *
- * All the top level containers
+ * All the top level modules
  *
  */
-import App from './containers/App'
-import Login from './containers/Login'
-import Logout from './containers/Logout'
-import Register from './containers/Register'
-import ForgotPassword from './containers/ForgotPassword'
-import Profile from './containers/Profile'
-import Main from './containers/Main'
-import Subview from './containers/Subview'
+import App from './modules/App'
+import Login from './modules/Login'
+import Logout from './modules/Logout'
+import Register from './modules/Register'
+import ForgotPassword from './modules/ForgotPassword'
+import Profile from './modules/account/AccountView'
+import Main from './modules/home/HomeView'
+import Subview from './modules/Subview'
 
 /**
  * ### icons

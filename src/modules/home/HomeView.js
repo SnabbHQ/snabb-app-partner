@@ -15,8 +15,8 @@ import { connect } from 'react-redux'
 /**
  * The actions we need
  */
-import * as authActions from '../reducers/auth/authActions'
-import * as globalActions from '../reducers/global/globalActions'
+import * as authActions from '../../reducers/auth/authActions'
+import * as globalActions from '../../reducers/global/globalActions'
 
 /**
  * Router
@@ -26,7 +26,7 @@ import {Actions} from 'react-native-router-flux'
 /**
  * The Header will display a Image and support Hot Loading
  */
-import Header from '../components/Header'
+import Header from '../../components/Header'
 
 /**
  * The components needed from React
@@ -46,7 +46,7 @@ const Button = require('apsl-react-native-button')
 
 /**
  *  Instead of including all app states via ...state
- *  One could explicitly enumerate only those which Main.js will depend on.
+ *  One could explicitly enumerate only those which HomeView.js will depend on.
  *
  */
 function mapStateToProps (state) {
@@ -93,7 +93,7 @@ var styles = StyleSheet.create({
  * ### Translations
  */
 var I18n = require('react-native-i18n')
-import Translations from '../lib/Translations'
+import Translations from '../../lib/Translations'
 I18n.translations = Translations
 
 /**
