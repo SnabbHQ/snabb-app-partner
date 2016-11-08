@@ -17,7 +17,7 @@ import I18n from "../lib/I18n";
 
 /**
  *  Instead of including all app states via ...state
- *  You probably want to explicitly enumerate only those which HomeView.js will depend on.
+ *  You probably want to explicitly enumerate only those which HomeScreen.js will depend on.
  *
  */
 function mapStateToProps (state) {

@@ -21,7 +21,7 @@ import GoOnlineNavBar from "../../components/GoOnlineNavBar"
 
 /**
  *  Instead of including all app states via ...state
- *  One could explicitly enumerate only those which HomeView.js will depend on.
+ *  One could explicitly enumerate only those which HomeScreen.js will depend on.
  */
 function mapStateToProps (state) {
   return {
