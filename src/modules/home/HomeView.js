@@ -1,14 +1,10 @@
 /**
- * # Main.js
- *  This is the main app screen
- *
+ * # HomeView.js
+ *  This is the main entry point of the application after authentication has been successfully performed.
  */
+
 'use strict'
-/*
- * ## Imports
- *
- * Imports from redux
- */
+
 import {bindActionCreators} from "redux"
 import {connect} from "react-redux"
 import * as authActions from "../../reducers/auth/authActions"
@@ -18,8 +14,7 @@ import Header from "../../components/Header"
 import React, {Component} from "react"
 import {StyleSheet, View} from "react-native"
 import I18n from "../../lib/I18n";
-
-const Button = require('apsl-react-native-button')
+import {Button} from 'native-base';
 
 /**
  *  Instead of including all app states via ...state

@@ -2,48 +2,18 @@
  * # Subview.js
  *
  *  This is called from main to demonstrate the back button
- *
  */
 'use strict'
-/*
- * ## Imports
- *
- * Imports from redux
- */
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 
-/**
- * Router
- */
-import {Actions} from 'react-native-router-flux'
+import {bindActionCreators} from "redux"
+import {connect} from "react-redux"
+import {Actions} from "react-native-router-flux"
+import React from "react"
+import {StyleSheet, View, Text} from "react-native"
+import * as deviceActions from "../reducers/device/deviceActions"
+import DefaultNavBar from "../components/DefaultNavBar";
+import I18n from "../lib/I18n";
 
-/**
- * Navigation Bar
- */
-import NavigationBar from 'react-native-navbar'
-
-/**
- * The necessary components from React
- */
-import React from 'react'
-import
-{
-  StyleSheet,
-  View,
-  Text
-}
-from 'react-native'
-
-/**
- * Use device options so we can reference the Version
- *
- */
-import * as deviceActions from '../reducers/device/deviceActions'
-
-/**
-* ## Redux boilerplate
-*/
 
 /**
  *  Instead of including all app states via ...state
@@ -78,12 +48,6 @@ var styles = StyleSheet.create({
     fontWeight: 'bold'
   }
 })
-/**
- * ### Translations
- */
-var I18n = require('react-native-i18n')
-import Translations from '../lib/Translations'
-I18n.translations = Translations
 
 /**
  * ## Subview class
@@ -91,28 +55,18 @@ I18n.translations = Translations
 let Subview = React.createClass({
 
   render () {
-    var titleConfig = {
-      title: I18n.t('Subview.subview')
-    }
-
-    var leftButtonConfig = {
-      title: I18n.t('Subview.back'),
-      handler: Actions.pop
-    }
-
     return (
       <View>
-        <NavigationBar
-          title={titleConfig}
-          leftButton={leftButtonConfig} />
+        <DefaultNavBar title={this.props.title}/>
         <View style={styles.container}>
-          <Text style={styles.summary}>{I18n.t('Subview.subview')} {I18n.t('App.version')}: {this.props.deviceVersion}
-          </Text>
+          <Text style={styles.summary}>{I18n.t('Subview.subview')} {I18n.t('App.version')}: {this.props.deviceVersion}</Text>
         </View>
       </View>
     )
   }
 })
+
+
 
 /**
  * Connect the properties
