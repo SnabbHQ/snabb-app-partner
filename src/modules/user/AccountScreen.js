@@ -8,10 +8,10 @@
  */
 'use strict'
 /**
-* ## Imports
-*
-* Redux
-*/
+ * ## Imports
+ *
+ * Redux
+ */
 import {bindActionCreators} from "redux"
 import {connect} from "react-redux"
 import * as profileActions from "../../reducers/profile/profileActions"
@@ -21,18 +21,20 @@ import FormButton from "../../components/FormButton"
 import Header from "../../components/Header"
 import ItemCheckbox from "../../components/ItemCheckbox"
 import React, {Component} from "react"
-import {StyleSheet, View} from "react-native"
+import {StyleSheet} from "react-native"
 import t from "tcomb-form-native"
 import I18n from '../../lib/I18n'
+import {View, Content} from "native-base"
+import GoOnlineNavBar from "../../components/GoOnlineNavBar"
 
 
 let Form = t.form.Form
 
 /**
-* ## Redux boilerplate
-*/
+ * ## Redux boilerplate
+ */
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     profile: state.profile,
     global: {
@@ -43,9 +45,9 @@ function mapStateToProps (state) {
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ ...profileActions, ...globalActions }, dispatch)
+    actions: bindActionCreators({...profileActions, ...globalActions}, dispatch)
   }
 }
 
@@ -54,7 +56,7 @@ class AccountScreen extends Component {
    * ## Profile class
    * Set the initial state and prepare the errorAlert
    */
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.errorAlert = new ErrorAlert()
     this.state = {
@@ -64,6 +66,7 @@ class AccountScreen extends Component {
       }
     }
   }
+
   /**
    * ### onChange
    *
@@ -71,7 +74,7 @@ class AccountScreen extends Component {
    * be validated.
    *
    */
-  onChange (value) {
+  onChange(value) {
     if (value.username !== '') {
       this.props.actions.onProfileFormFieldChange('username', value.username)
     }
@@ -80,13 +83,14 @@ class AccountScreen extends Component {
     }
     this.setState({value})
   }
+
   /**
    * ### componentWillReceiveProps
    *
    * Since the Forms are looking at the state for the values of the
    * fields, when we we need to set them
    */
-  componentWillReceiveProps (props) {
+  componentWillReceiveProps(props) {
     this.setState({
       formValues: {
         username: props.profile.form.fields.username,
@@ -94,6 +98,7 @@ class AccountScreen extends Component {
       }
     })
   }
+
   /**
    * ### componentDidMount
    *
@@ -101,7 +106,7 @@ class AccountScreen extends Component {
    * immediately being in a "logged in" state, we need to just set the
    * form fields.  Otherwise, we need to go fetch the fields
    */
-  componentDidMount () {
+  componentDidMount() {
     if (this.props.profile.form.fields.username === '' && this.props.profile.form.fields.email === '') {
       this.props.actions.getProfile(this.props.global.currentUser)
     } else {
@@ -118,7 +123,7 @@ class AccountScreen extends Component {
    * ### render
    * display the form wrapped with the header and button
    */
-  render () {
+  render() {
     this.errorAlert.checkError(this.props.profile.form.error)
 
     let self = this
@@ -170,16 +175,18 @@ class AccountScreen extends Component {
      * for more info.
      */
     let verfiedText = I18n.t('Profile.verified') +
-                       ' (' +
-                       I18n.t('Profile.display') +
-                       ')'
+      ' (' +
+      I18n.t('Profile.display') +
+      ')'
+    
     return (
-      <View style={styles.container}>
+      <Content>
+        <GoOnlineNavBar/>
         <Header isFetching={this.props.profile.form.isFetching}
-          showState={this.props.global.showState}
-          currentState={this.props.global.currentState}
-          onGetState={this.props.actions.getState}
-          onSetState={this.props.actions.setState}
+                showState={this.props.global.showState}
+                currentState={this.props.global.currentState}
+                onGetState={this.props.actions.getState}
+                onSetState={this.props.actions.setState}
         />
         <View style={styles.inputs}>
           <Form
@@ -190,16 +197,16 @@ class AccountScreen extends Component {
             onChange={this.onChange.bind(self)}
           />
           <ItemCheckbox text={verfiedText}
-            disabled
-            checked={this.props.profile.form.fields.emailVerified} />
+                        disabled
+                        checked={this.props.profile.form.fields.emailVerified}/>
         </View>
 
         <FormButton
           isDisabled={!this.props.profile.form.isValid || this.props.profile.form.isFetching}
           onPress={onButtonPress.bind(self)}
-          buttonText={profileButtonText} />
+          buttonText={profileButtonText}/>
 
-      </View>
+      </Content>
     )
   }
 }
@@ -208,11 +215,6 @@ class AccountScreen extends Component {
  * ## Styles
  */
 var styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    flex: 1,
-    backgroundColor: 'transparent'
-  },
   inputs: {
     marginTop: 10,
     marginBottom: 10,
