@@ -18,7 +18,7 @@ import Header from "../../components/Header"
 import FormButton from "../../components/FormButton"
 import React, {Component} from "react"
 import {StyleSheet, View} from "react-native"
-import Translations from "../../lib/Translations"
+import I18n from '../../lib/I18n'
 
 
 /**
@@ -45,11 +45,6 @@ function mapDispatchToProps (dispatch) {
     actions: bindActionCreators({ ...authActions, ...globalActions }, dispatch)
   }
 }
-/**
- * ### Translations
- */
-var I18n = require('react-native-i18n')
-I18n.translations = Translations
 
 class RatingsView extends Component {
 

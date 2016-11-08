@@ -5,28 +5,13 @@
  *
  */
 'use strict'
-/**
- * ## Imports
- *
- * Redux
- */
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 
-/**
- * The actions we need
- */
-import * as authActions from '../../reducers/auth/authActions'
-
-/**
- *   LoginRender
- */
-import LoginRender from './components/LoginRender'
-
-/**
- * The necessary React components
- */
-import React from 'react'
+import {bindActionCreators} from "redux"
+import {connect} from "react-redux"
+import * as authActions from "../../reducers/auth/authActions"
+import LoginRender from "./components/LoginRender"
+import React from "react"
+import Translations from "../../lib/Translations"
 
 const {
   LOGIN,
@@ -37,7 +22,6 @@ const {
 /**
  * ## Redux boilerplate
  */
-
 function mapStateToProps (state) {
   return {
     auth: state.auth,
@@ -59,7 +43,6 @@ function buttonPressHandler (login, username, password) {
  * ### Translations
  */
 var I18n = require('react-native-i18n')
-import Translations from '../../lib/Translations'
 I18n.translations = Translations
 
 let Login = React.createClass({

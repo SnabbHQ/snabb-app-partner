@@ -66,10 +66,10 @@ I18n.translations = Translations
  *
  */
 import App from './modules/App'
-import Login from './modules/user/Login'
-import Logout from './modules/user/Logout'
-import Register from './modules/user/Register'
-import ForgotPassword from './modules/user/ForgotPassword'
+import Login from './modules/user/LoginView'
+import Logout from './modules/user/LogoutView'
+import Register from './modules/user/RegisterView'
+import ForgotPassword from './modules/user/ForgotPasswordView'
 import Profile from './modules/user/AccountView'
 import Main from './modules/home/HomeView'
 import Subview from './modules/Subview'

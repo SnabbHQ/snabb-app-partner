@@ -23,7 +23,7 @@ import ItemCheckbox from "../../components/ItemCheckbox"
 import React, {Component} from "react"
 import {StyleSheet, View} from "react-native"
 import t from "tcomb-form-native"
-import Translations from "../../lib/Translations"
+import I18n from '../../lib/I18n'
 
 
 let Form = t.form.Form
@@ -48,11 +48,6 @@ function mapDispatchToProps (dispatch) {
     actions: bindActionCreators({ ...profileActions, ...globalActions }, dispatch)
   }
 }
-/**
- * ### Translations
- */
-var I18n = require('react-native-i18n')
-I18n.translations = Translations
 
 class AccountView extends Component {
   /**

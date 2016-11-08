@@ -1,57 +1,21 @@
 /**
  * # Logout.js
- *
- *
- *
  */
 'use strict'
-/**
- * ## Imports
- *
- * Redux
- */
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
 
-/**
- * The actions we need
- */
-import * as authActions from '../../reducers/auth/authActions'
-import * as globalActions from '../../reducers/global/globalActions'
+import {bindActionCreators} from "redux"
+import {connect} from "react-redux"
+import * as authActions from "../../reducers/auth/authActions"
+import * as globalActions from "../../reducers/global/globalActions"
+import Header from "../../components/Header"
+import FormButton from "../../components/FormButton"
+import React, {Component} from "react"
+import {StyleSheet, View} from "react-native"
+import I18n from '../../lib/I18n'
 
-/**
- * The Header will display a Image and support Hot Loading
- */
-import Header from '../../components/Header'
-/**
- * The FormButton will change it's text between the 4 states as necessary
- */
-import FormButton from '../../components/FormButton'
-
-/**
- * The necessary React components
- */
-import React, {Component} from 'react'
-import
-{
-  StyleSheet,
-  View
-}
-from 'react-native'
-
-/**
- * ## Styles
- */
-var styles = StyleSheet.create({
-  container: {
-    flexDirection: 'column',
-    flex: 1
-  }
-})
 /**
  * ## Redux boilerplate
  */
-
 function mapStateToProps (state) {
   return {
     auth: {
@@ -72,14 +36,8 @@ function mapDispatchToProps (dispatch) {
     actions: bindActionCreators({ ...authActions, ...globalActions }, dispatch)
   }
 }
-/**
- * ### Translations
- */
-var I18n = require('react-native-i18n')
-import Translations from '../../lib/Translations'
-I18n.translations = Translations
 
-class Logout extends Component {
+class LogoutView extends Component {
 
   /**
    * ### render
@@ -110,4 +68,16 @@ class Logout extends Component {
       )
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Logout)
+
+
+/**
+ * ## Styles
+ */
+var styles = StyleSheet.create({
+  container: {
+    flexDirection: 'column',
+    flex: 1
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogoutView)
