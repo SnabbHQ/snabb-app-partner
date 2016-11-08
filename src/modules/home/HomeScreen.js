@@ -61,7 +61,7 @@ class HomeView extends Component {
   render () {
     return (
       <Content>
-        <GoOnlineNavBar title={"Hola"}/>
+        <GoOnlineNavBar/>
         <View>
           <Header isFetching={this.props.auth.form.isFetching}
             showState={this.props.global.showState}

@@ -19,20 +19,21 @@ import {Router, Scene} from "react-native-router-flux"
 import {Provider} from "react-redux"
 import configureStore from "./lib/configureStore"
 import App from "./modules/App"
-import Login from "./modules/user/LoginScreen"
-import Logout from "./modules/user/LogoutSceen"
-import Register from "./modules/user/RegisterScreen"
-import ForgotPassword from "./modules/user/ForgotPasswordScreen"
-import Profile from "./modules/user/AccountScreen"
-import Main from "./modules/home/HomeScreen"
-import Subview from "./modules/SubviewScreen"
+import LoginScreen from "./modules/user/LoginScreen"
+import LogoutScreen from "./modules/user/LogoutSceen"
+import RegisterScreen from "./modules/user/RegisterScreen"
+import ForgotPasswordScreen from "./modules/user/ForgotPasswordScreen"
+import AccountScreen from "./modules/user/AccountScreen"
+import HomeScreen from "./modules/home/HomeScreen"
+import EarningsScreen from "./modules/earnings/EarningsScreen"
+import RatingsScreen from "./modules/ratings/RatingsScreen"
+import SubviewScreen from "./modules/SubviewScreen"
 import {setPlatform, setVersion} from "./reducers/device/deviceActions"
 import {setStore} from "./reducers/global/globalActions"
 import AuthInitialState from "./reducers/auth/authInitialState"
 import DeviceInitialState from "./reducers/device/deviceInitialState"
 import GlobalInitialState from "./reducers/global/globalInitialState"
 import ProfileInitialState from "./reducers/profile/profileInitialState"
-//import TabIcon from "./modules/home/components/TabIcon"
 import pack from "../package"
 import I18n from './lib/I18n'
 import Icon from "react-native-vector-icons/Ionicons"
@@ -114,23 +115,23 @@ export default function native(platform) {
                      initial/>
 
               <Scene key='InitialLoginForm'
-                     component={Register}
+                     component={RegisterScreen}
                      type='replace'/>
 
               <Scene key='Login'
-                     component={Login}
+                     component={LoginScreen}
                      type='replace'/>
 
               <Scene key='Register'
-                     component={Register}
+                     component={RegisterScreen}
                      type='replace'/>
 
               <Scene key='ForgotPassword'
-                     component={ForgotPassword}
+                     component={ForgotPasswordScreen}
                      type='replace'/>
 
               <Scene key='Subview'
-                     component={Subview}/>
+                     component={SubviewScreen}/>
 
               <Scene key='Tabbar'
                      tabs
@@ -143,7 +144,7 @@ export default function native(platform) {
                        iconName={'ios-home'}
                        icon={TabIcon}
                        hideNavBar
-                       component={Main}
+                       component={HomeScreen}
                        initial/>
 
                 <Scene key='Earnings'
@@ -151,21 +152,21 @@ export default function native(platform) {
                        icon={TabIcon}
                        iconName={'ios-stats'}
                        hideNavBar
-                       component={Logout}/>
+                       component={EarningsScreen}/>
 
                 <Scene key='Ratings'
                        title={I18n.t('Navigation.ratings')}
                        icon={TabIcon}
                        iconName={'ios-star'}
                        hideNavBar
-                       component={Logout}/>
+                       component={RatingsScreen}/>
 
                 <Scene key='Account'
                        title={I18n.t('Navigation.account')}
                        icon={TabIcon}
                        iconName={'ios-person'}
                        hideNavBar
-                       component={Profile}/>
+                       component={AccountScreen}/>
               </Scene>
             </Scene>
           </Router>
