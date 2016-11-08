@@ -28,6 +28,9 @@ import HomeScreen from "./modules/home/HomeScreen"
 import EarningsScreen from "./modules/earnings/EarningsScreen"
 import RatingsScreen from "./modules/ratings/RatingsScreen"
 import SubviewScreen from "./modules/SubviewScreen"
+import HelpScreen from "./modules/help/HelpScreen"
+import SettingsScreen from "./modules/settings/SettingsScreen"
+import AboutScreen from "./modules/about/AboutScreen"
 import {setPlatform, setVersion} from "./reducers/device/deviceActions"
 import {setStore} from "./reducers/global/globalActions"
 import AuthInitialState from "./reducers/auth/authInitialState"
@@ -132,6 +135,15 @@ export default function native(platform) {
 
               <Scene key='Subview'
                      component={SubviewScreen}/>
+
+              <Scene key='HelpScreen'
+                     component={HelpScreen}/>
+
+              <Scene key='SettingsScreen'
+                     component={SettingsScreen}/>
+
+              <Scene key='AboutScreen'
+                     component={AboutScreen}/>
 
               <Scene key='Tabbar'
                      tabs

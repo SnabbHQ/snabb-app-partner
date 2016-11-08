@@ -19,7 +19,7 @@ import * as profileActions from "../../reducers/profile/profileActions"
 import * as globalActions from "../../reducers/global/globalActions"
 import ErrorAlert from "../../components/ErrorAlert"
 import React, {Component} from "react"
-import {StyleSheet} from "react-native"
+import {StyleSheet, ScrollView} from "react-native"
 import t from "tcomb-form-native"
 import I18n from '../../lib/I18n'
 import {View, Icon, Badge, List, Text, ListItem, Content} from "native-base"
@@ -118,12 +118,16 @@ class AccountScreen extends Component {
     // }
   }
 
-  handleSettingsPress () {
-    Actions.Subview()
+  handleHelpPress() {
+    Actions.HelpScreen()
+  }
+
+  handleSettingsPress() {
+    Actions.SettingsScreen()
   }
 
   handleAboutPress () {
-    Actions.Subview()
+    Actions.AboutScreen()
   }
 
   /**
@@ -191,18 +195,25 @@ class AccountScreen extends Component {
         <GoOnlineNavBar/>
         <View>
           <View style={{height: 230, backgroundColor: '#000000'}}/>
-          <List>
-            <ListItem button iconLeft iconRight onPress={this.handleSettingsPress.bind(this)}>
-              <Icon name='ios-help-circle-outline'/>
-              <Text>Help</Text>
-              <Icon name='ios-arrow-forward'/>
-            </ListItem>
-            <ListItem button iconLeft iconRight onPress={this.handleAboutPress.bind(this)}>
-              <Icon name='ios-information-circle-outline'/>
-              <Text>Settings</Text>
-              <Icon name='ios-arrow-forward'/>
-            </ListItem>
-          </List>
+          <ScrollView>
+            <List>
+              <ListItem button iconLeft iconRight onPress={this.handleHelpPress.bind(this)}>
+                <Icon name='ios-help-circle-outline'/>
+                <Text>Help</Text>
+                <Icon name='ios-arrow-forward'/>
+              </ListItem>
+              <ListItem button iconLeft iconRight onPress={this.handleSettingsPress.bind(this)}>
+                <Icon name='ios-settings-outline'/>
+                <Text>Settings</Text>
+                <Icon name='ios-arrow-forward'/>
+              </ListItem>
+              <ListItem button iconLeft iconRight onPress={this.handleAboutPress.bind(this)}>
+                <Icon name='ios-information-circle-outline'/>
+                <Text>About</Text>
+                <Icon name='ios-arrow-forward'/>
+              </ListItem>
+            </List>
+          </ScrollView>
         </View>
       </View>
     )
@@ -212,7 +223,7 @@ class AccountScreen extends Component {
 /**
  * ## Styles
  */
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   inputs: {
     marginTop: 10,
     marginBottom: 10,
